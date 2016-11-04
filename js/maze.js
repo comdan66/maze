@@ -18,7 +18,7 @@ $(function () {
   var $maps = null, _u = {};
 
   e.once ('value', function (s) {
-    if (s.val () === null || (s.val () !== 1 && s.val () !== 2 && s.val () !== 3)) window.location.assign ('http://' + window.DOMAIN + '/maze/');
+    if (s.val () === null || (s.val () !== 1 && s.val () !== 2)) window.location.assign ('http://' + window.DOMAIN + '/maze/');
 
     e.on ('value', function (s1) {
       if (s1.val () === 3) {
