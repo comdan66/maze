@@ -47,6 +47,7 @@ $(function () {
         r: {
           l: firebase.database ().ref ('u/' + s.getKey () + '/l'),
           s: firebase.database ().ref ('u/' + s.getKey () + '/s'),
+          e: firebase.database ().ref ('u/' + s.getKey () + '/e'),
         }
       };
 
@@ -94,6 +95,7 @@ $(function () {
     if (typeof _u[i] == 'undefined') return;
     _u[i].r.l.off ();
     _u[i].r.s.off ();
+    _u[i].r.e.off ();
     _u[i].$u.remove ();
 
     _u[i] = null;
