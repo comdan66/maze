@@ -9,7 +9,6 @@ $(function () {
   if (!k.match (/^k=/)) return window.location.assign ('http://' + window.DOMAIN + '/maze/');
   var hash = k.substring (2);
   if (hash.length <= 0) return window.location.assign ('http://' + window.DOMAIN + '/maze/');
-console.error (hash);
 
   var $loading = $('#loading').contextmenu (function () { return false; });
 
@@ -52,9 +51,9 @@ $(function () {
     });
   });
 
-  $('#up').click (up);
-  $('#left').click (le);
-  $('#right').click (ri);
-  $('#down').click (bo);
+  $('#up').on ('tap', function () { up (); })
+  $('#left').on ('tap', function () { le (); });
+  $('#right').on ('tap', function () { ri (); });
+  $('#down').on ('tap', function () { bo (); });
   $(window).keyup (function (e) { switch (e.keyCode) { case 38: up (); break; case 40: bo (); break; case 37: le (); break; case 39: ri (); break; } });
 });
