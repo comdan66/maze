@@ -26,7 +26,7 @@ $(function () {
   r = firebase.database ().ref ('u/' + hash + '/l');
 
   e.once ('value', function (s) {
-    if (s.val () != 0) return window.location.assign ('http://' + window.DOMAIN + '/maze/');
+    if (s.val () == 3) return window.location.assign ('http://' + window.DOMAIN + '/maze/');
     
     e.set (1, function () {
       r.on ('value', function (s) { if (!(s.val () && s.val ().length == 2 && typeof s.val ()[0] != 'undefined' && typeof s.val ()[1] != 'undefined' && !isNaN (s.val ()[0]) & !isNaN (s.val ()[1]) && s.val ()[0] >= 0 && s.val ()[1] >= 0)) return window.location.assign ('http://' + window.DOMAIN + '/maze/'); x = s.val ()[0]; y = s.val ()[1]; });
