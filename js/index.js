@@ -12,11 +12,11 @@ $(function () {
   firebase.initializeApp (config);
   var empty = []; for (var i = 0; i < window.maze.length; i++) for (var j = 0; j < window.maze[i].length; j++) if (window.maze[i][j] == 1) empty.push ([i, j]);
   var key = firebase.database ().ref ('u').push ({n: '遊客', c: 0, e: 0, s: parseInt (Math.random () * 10, 10) % 5 + 1, l: empty[Math.floor (Math.random () * empty.length)]}).key;
-  var url = 'http://' + window.DOMAIN + '/maze/joystick.html#' + key;
+  var url = 'http://' + window.DOMAIN + '/maze/joystick.html?k=' + key;
   console.error (url);
 
   new QRCode ($qrcode.get (0), { width: 450, height: 450, colorDark : "#333", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H }).makeCode (url);
-  firebase.database ().ref ('u/' + key + '/e').on ('value', function (s) { if (s.val () > 0) window.location.assign ('http://' + window.DOMAIN + '/maze/maze.html#' + key); });
+  firebase.database ().ref ('u/' + key + '/e').on ('value', function (s) { if (s.val () > 0) window.location.assign ('http://' + window.DOMAIN + '/maze/maze.html?k=' + key); });
 
   setTimeout (function () { $loading.removeClass ('s'); }, 500);
 });

@@ -4,7 +4,9 @@
  */
 
 $(function () {
-  var hash = window.location.hash.substring (1);
+  var k = location.search.substring (1);
+  if (!k.match (/^k=/)) return window.location.assign ('http://' + window.DOMAIN + '/maze/');
+  var hash = k.substring (2);
   if (hash.length <= 0) return window.location.assign ('http://' + window.DOMAIN + '/maze/');
 
   var $loading = $('#loading').contextmenu (function () { return false; });
