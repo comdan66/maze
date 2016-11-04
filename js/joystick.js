@@ -31,9 +31,9 @@ $(function () {
     e.set (1, function () {
       r.on ('value', function (s) { if (!(s.val () && s.val ().length == 2 && typeof s.val ()[0] != 'undefined' && typeof s.val ()[1] != 'undefined' && !isNaN (s.val ()[0]) & !isNaN (s.val ()[1]) && s.val ()[0] >= 0 && s.val ()[1] >= 0)) return window.location.assign ('http://' + window.DOMAIN + '/maze/'); x = s.val ()[0]; y = s.val ()[1]; });
 
-      var n = window.prompt ('請輸入暱稱：'); if (!n.length) n = '遊客';
+      // var n = window.prompt ('請輸入暱稱：'); if (!n.length) n = '遊客';
 
-      firebase.database ().ref ('u/' + hash + '/n').set (n, function () {
+      firebase.database ().ref ('u/' + hash + '/n').set ('遊客', function () {
         e.set (2, function () {
           e.on ('value', function (s) {
             if (s.val () !== 3) return;

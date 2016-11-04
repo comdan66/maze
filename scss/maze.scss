@@ -118,6 +118,7 @@ footer {
     background-color: rgba(243, 243, 243, 1.00);
     position: absolute;
     height: 50px;
+    text-align: center;
     color: rgba(50, 50, 50, 0.75);
     @include scale(1);
     @include transition(color .3s, transform .25s);
@@ -188,6 +189,7 @@ footer {
     color: white;
     text-align: center;
     font-size: 10px;
+    @include scale(.9);
 
     &.me {
       background-color: rgba(234, 67, 53, 1.00);
@@ -207,7 +209,7 @@ footer {
   text-align: center;
 
   > div {
-    $w: 100px;
+    $w: 250px;
     position: absolute;
     top: calc(50% - #{$w} / 2);
     left: calc(50% - #{$w} / 2);
@@ -217,18 +219,7 @@ footer {
     margin: 0 auto;
 
     @include border-radius($w / 2);
-    @include box-shadow(0 0 0 10000px rgba(0, 0, 0, .1), inset 0 0 10px 5px rgba(0, 0, 0, 1));
-
-    // &:after {
-    //   content: '';
-    //   position: absolute;
-    //   top: calc(50% - 2px / 2);
-    //   left: calc(50% - 2px / 2);
-    //   display: inline-block;
-    //   width: 2px;
-    //   height: 2px;
-    //   background-color: red;
-    // }
+    @include box-shadow(0 0 0 10000px rgba(0, 0, 0, 1), inset 0 0 50px 5px rgba(0, 0, 0, 1));
   }
 }
 
