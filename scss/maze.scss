@@ -1,0 +1,415 @@
+/**
+ * @author      OA Wu <comdan66@gmail.com>
+ * @copyright   Copyright (c) 2016 OA Wu Design
+ */
+
+@import "_oa";
+
+@include font-face("icomoon", font-files("icomoon/icomoon.eot", "icomoon/icomoon.woff", "icomoon/icomoon.ttf", "icomoon/icomoon.svg"));
+[class^="icon-"], [class*=" icon-"] { font-family: 'icomoon', 'Open sans', Comfortaa, 'Helvetica Neue', Helvetica, Arial, 'Hiragino Maru Gothic ProN', 'メイリオ','ヒラギノ丸ゴ ProN W4', '微軟正黑體', Meiryo, 'Droid Sans'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; @include font-smoothing(antialiased); }
+* { &, &:after, &:before { vertical-align: top; @include box-sizing(border-box); @include selection(rgba(150, 200, 255, 1), rgba(255, 255, 255, 1)); @include font-smoothing(antialiased); } }
+
+.icon-mail-forward:before {
+  content: "\e906";
+}
+.icon-user:before {
+  content: "\e900";
+}
+.icon-question:before {
+  content: "\e901";
+}
+.icon-github:before {
+  content: "\eab0";
+}
+.icon-keyboard_arrow_up:before {
+  content: "\e902";
+}
+.icon-keyboard_arrow_right:before {
+  content: "\e903";
+}
+.icon-keyboard_arrow_left:before {
+  content: "\e904";
+}
+.icon-keyboard_arrow_down:before {
+  content: "\e905";
+}
+
+
+
+$_bg: rgba(236 + 15, 248 + 15, 249 + 15, 1.00);
+
+html {
+  height: 100%;
+
+  body {
+    height: 100%;
+    margin: 0;
+    font-size: medium;
+    font-family: 'Open sans', Comfortaa, 'Helvetica Neue', Helvetica, Arial, 'Hiragino Maru Gothic ProN', 'メイリオ','ヒラギノ丸ゴ ProN W4', '微軟正黑體', Meiryo, 'Droid Sans';
+    background: $_bg;
+    @include font-smoothing(antialiased);
+  }
+}
+
+body {
+  overflow: hidden;
+}
+header {
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(0, 150, 136, 1.00);
+
+  h1 {
+    margin: 0;
+    color: rgba(255, 255, 255, 1.00);
+  }
+  p {
+    margin: 0;
+    color: rgba(255, 255, 255, .75);
+    br {
+      display: none;
+    }
+  }
+}
+footer {
+  margin-top: 30px;
+  text-align: center;
+  color: rgba(0, 0, 0, .45);
+  font-size: 13px;
+}
+#qrcode {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+
+  img {
+    display: inline-block;
+    margin: 0 auto;
+    @include border-radius(3px);
+  }
+}
+@media screen and (min-width: 0) and (max-width: #{$mediaMobileWidth - 1px}) {
+  header {
+    h1 {
+      font-size: 25px;
+    }
+    p {
+      font-size: 13px;
+      br {
+        display: inline-block;
+      }
+    }
+  }
+  #qrcode {
+    img {
+      width: calc(100% - 20px * 2);
+      margin: 0 20px;
+    }
+  }
+}
+#main {
+  position: relative;
+  height: 100%;
+
+  button {
+    border: 1px solid rgba(163, 163, 163, 1.00);
+    background-color: rgba(243, 243, 243, 1.00);
+    position: absolute;
+    height: 50px;
+    color: rgba(50, 50, 50, 0.75);
+    @include scale(1);
+    @include transition(color .3s, transform .25s);
+    @include border-radius(3px);
+    
+
+    &:focus { outline: 0; }
+    &:hover { color: rgba(50, 50, 50, 1); }
+    &:active { @include scale(1.3); }
+  }
+  button {
+    width: 50px;
+    font-size: 30px;
+  }
+  #up, #down {
+    left: calc(50% - 50px / 2);
+  }
+  #up {
+    top: calc(50% - 50px / 2 - (50px / 3) * 4);
+  }
+  #down {
+    top: calc(50% - 50px / 2 + (50px / 3) * 4);
+  }
+  #right, #left {
+    top: calc(50% - 50px / 2);
+  }
+  #right {
+    left: calc(50% - 50px / 2 + (50px / 3) * 4);
+  }
+  #left {
+    left: calc(50% - 50px / 2 - (50px / 3) * 4);
+  }
+}
+
+#maps {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 1.00);
+  @include clearfix();
+  @include transition(left .3s, top .3s, right .3s, bottom .3s);
+  
+  
+  .p {
+    display: inline-block;
+    float: left;
+
+    &.ur { @include border-top-right-radius(50%); }
+    &.dr { @include border-bottom-right-radius(50%); }
+    &.ul { @include border-top-left-radius(50%); }
+    &.dl { @include border-bottom-left-radius(50%); }
+
+    &.wall {
+      background-color: rgba(103, 190, 126, 1.00);
+    }
+    &.road {
+      background-color: rgba(255, 255, 255, 1.00);
+    }
+  }
+  .u {
+    position: absolute;
+    top: -1000px;
+    left: -1000px;
+    display: inline-block;
+    @include transition(top .5s, left .5s);
+    @include border-radius(50%);
+    color: white;
+    text-align: center;
+    font-size: 10px;
+
+    &.me {
+      background-color: rgba(234, 67, 53, 1.00);
+    }
+    &.he {
+      background-color: rgba(62, 128, 240, 1.00);
+    }
+  }
+}
+#cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
+  > div {
+    $w: 100px;
+    position: absolute;
+    top: calc(50% - #{$w} / 2);
+    left: calc(50% - #{$w} / 2);
+    display: inline-block;
+    width: $w;
+    height: $w;
+    margin: 0 auto;
+
+    @include border-radius($w / 2);
+    @include box-shadow(0 0 0 10000px rgba(0, 0, 0, .1), inset 0 0 10px 5px rgba(0, 0, 0, 1));
+
+    // &:after {
+    //   content: '';
+    //   position: absolute;
+    //   top: calc(50% - 2px / 2);
+    //   left: calc(50% - 2px / 2);
+    //   display: inline-block;
+    //   width: 2px;
+    //   height: 2px;
+    //   background-color: red;
+    // }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0);
+  @include transition(background-color .3s, opacity .3s);
+
+  &.s {
+    top: 0;
+    background-color: rgba(0, 0, 0, .75);
+    @include transition(transform .75s cubic-bezier(.29,1.25,.76,.99), opacity .15s);
+
+    > div {
+      @include scale(1);
+      @include opacity(1);
+    }
+  }
+
+  div, span {
+    position: absolute;
+    display: inline-block;
+  }
+  > div {
+    top: calc(50% - 150px / 2);
+    left: calc(50% - 180px / 2);
+    display: inline-block;
+    height: 150px;
+    width: 180px;
+    background-color: rgba(0, 0, 0, .5);
+    border: 1px solid rgba(255, 255, 255, .35);
+    @include scale(0);
+    @include opacity(0);
+    @include border-radius(3px);
+    @include transition(transform .3s, opacity .15s);
+    
+
+    > div {
+      top: 0;
+      left: calc(50% - 100px / 2);
+      height: 100px;
+      width: 100px;
+      @include animation(loading 2s linear infinite);
+
+      span {
+        width: 15px;
+        height: 15px;
+        @include border-radius(50%);
+        @include opacity(.75);
+
+        $cs:(rgba(244, 67, 54, 1.00), rgba(255, 87, 34, 1.00), rgba(255, 152, 0, 1.00), rgba(255, 235, 59, 1.00), rgba(76, 175, 80, 1.00), rgba(33, 150, 243, 1.00), rgba(3, 169, 244, 1.00), rgba(0, 188, 212, 1.00));
+
+        @for $i from 1 through 8 {
+          &:nth-child(#{$i}){
+            background-color: nth($cs,$i);
+            top: sin(360deg / 8 * ($i - 1)) * (30px) + (100px / 2 - 15px / 2);
+            left: cos(360deg / 8 * ($i - 1)) * (30px) + (100px / 2 - 15px / 2);
+          }
+        }
+      }
+    }
+    > span {
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      padding: 5px;
+      color: white;
+      text-align: center;
+    }
+  }
+}
+
+@include keyframes(loading){
+  0% { @include rotate(0); }
+  100% { @include rotate(360deg); }
+}
+
+#gg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0);
+  @include transition(background-color .3s, opacity .3s);
+
+  &.s {
+    top: 0;
+    background-color: rgba(0, 0, 0, .75);
+    @include transition(transform .75s cubic-bezier(.29,1.25,.76,.99), opacity .15s);
+
+    > div {
+      @include scale(1);
+      @include opacity(1);
+    }
+  }
+
+  > div {
+    position: absolute;
+    display: inline-block;
+    top: calc(50% - 200px / 2);
+    left: calc(50% - 300px / 2);
+    display: inline-block;
+    height: 200px;
+    width: 300px;
+    background-color: rgba(0, 0, 0, .5);
+    border: 1px solid rgba(255, 255, 255, .35);
+    @include scale(0);
+    @include opacity(0);
+    @include border-radius(3px);
+    @include transition(transform .3s, opacity .15s);
+    
+    span {
+      color: white;
+      display: inline-block;
+      width: 100%;
+      height: 200px - 55px;
+      line-height: 200px - 55px - 5px;
+      padding: 10px;
+      font-size: 20px;
+      text-align: center;
+    }
+    div {
+      border-top: 1px solid rgba(255, 255, 255, .35);
+      height: 55px;
+      @include clearfix();
+      
+      a {
+        float: left;
+        display: inline-block;
+        width: calc(50% - 1px / 2);
+        text-align: center;
+        position: relative;
+        height: 55px;
+        line-height: 55px - 2px;
+        color: rgba(250, 250, 250, .75);
+        cursor: pointer;
+        @include transition(color .3s);
+        
+        &:hover, &:active {
+          color: rgba(250, 250, 250, 1);
+        }
+
+        + a {
+          &:before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 0;
+            display: inline-block;
+            width: 1px;
+            height: calc(100% - 3px);
+            background-color: rgba(255, 255, 255, .35);
+          }
+        }
+      }
+    }
+  }
+}
